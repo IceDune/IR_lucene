@@ -5,11 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.core.LowerCaseFilter;
+import org.apache.lucene.analysis.en.PorterStemFilter;
+import org.apache.lucene.analysis.standard.StandardTokenizer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -20,9 +27,8 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.util.Version;
 
 public class QuerySearcher {
 
@@ -68,6 +74,8 @@ public class QuerySearcher {
             String bufferedContent = "";
             Integer id = 1;
             String idString = "";
+            String[] stopWords = StopWords.getStopWordsList();
+            
             while (currentLine != null) {
             	if (currentLine.startsWith(".I")) {
             		// Store generated Id.
@@ -84,6 +92,14 @@ public class QuerySearcher {
             		}
             	}
             	bufferedContent = bufferedContent.trim();
+            	System.out.println(bufferedContent);
+            	
+            	// TODO: Text Processing
+            	//bufferedContent = stripPunctuation(bufferedContent);	// decreas
+            	bufferedContent = removeStopWords(bufferedContent, stopWords);
+            	bufferedContent = addBasicTokenization(bufferedContent);
+            	
+            	System.out.println(bufferedContent);
             	Query query = parser.parse(QueryParser.escape(bufferedContent));
 
             	// reset query at the end.
@@ -97,17 +113,34 @@ public class QuerySearcher {
             reader.close();
 		}
 	}
-
+	
+	private String stripPunctuation(String content) {
+		content = content.replaceAll("\\p{Punct}", "");
+		return content;
+	}
+	
+	private String removeStopWords(String content, String[] stopWords) {
+		for (String word : stopWords) {
+			content = content.replaceAll(word, " ");
+		}
+		return content;
+	}
+	
+	private String addBasicTokenization(String content) {
+		content = content.replaceAll("-", " ");
+		return content;
+	}
+	
 	private void performSearch(IndexSearcher searcher, PrintWriter writer,
 			String id, Query query) throws IOException {
-		TopDocs results = searcher.search(query, 999);
+		TopDocs results = searcher.search(query, 1400);
         ScoreDoc[] hits = results.scoreDocs;
 
         // To write the results for each hit in the format expected by the trec_eval tool.
         for (int i = 0; i < hits.length; i++) {
             Document doc = searcher.doc(hits[i].doc);
             writer.println(id + " 0 " + doc.get("id") + " " + i + " " + 
-            		hits[i].score + "...");
+            		hits[i].score + " BINARY");
         }
 	}
 }

@@ -1,5 +1,7 @@
 package com.kaushik.lucene.assignment;
 
+import java.io.IOException;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
@@ -25,6 +27,9 @@ public class ArgumentResolver {
     	}
     	else if (analyzerType.equals("-ea")) {	// English Analyzer
     		analyzer = new EnglishAnalyzer();
+    	}
+    	else if (analyzerType.equals("-shina")) {
+			analyzer = new ShinigamiAnalyzer().ShinigamiAnalyzer();
     	}
     	else {	// default analyzer.
     		analyzer = new EnglishAnalyzer();
