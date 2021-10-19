@@ -24,7 +24,7 @@ public class CreateIndex
     {
     	// create or use index in project folder.
     	// TODO: Check this for Linux!
-    	INDEX_DIRECTORY = System.getProperty("user.dir") + "\\index";
+    	INDEX_DIRECTORY = System.getProperty("user.dir") + "/index";
     	
     	// initialize analyzer based on 
     	Analyzer analyzer = null;

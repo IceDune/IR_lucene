@@ -18,7 +18,7 @@ import org.apache.lucene.index.IndexWriter;
 public class CorpusParser {
 
 	private static String CORPUS_DIRECTORY = System.getProperty("user.dir") 
-			+ "\\cran\\cran.all.1400";
+			+ "/cran/cran.all.1400";
 	
 	private String corpusContent;
 	

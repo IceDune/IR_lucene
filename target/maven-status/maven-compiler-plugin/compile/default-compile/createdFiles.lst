@@ -1,0 +1,7 @@
+com/kaushik/lucene/assignment/ArgumentResolver.class
+com/kaushik/lucene/assignment/CorpusParser.class
+com/kaushik/lucene/assignment/ShinigamiAnalyzer.class
+com/kaushik/lucene/assignment/StopWords.class
+com/kaushik/lucene/assignment/QuerySearcher.class
+com/kaushik/lucene/assignment/CreateIndex.class
+com/kaushik/lucene/assignment/Application.class

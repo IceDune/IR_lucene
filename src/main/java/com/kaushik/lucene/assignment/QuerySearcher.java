@@ -33,9 +33,9 @@ import org.apache.lucene.util.Version;
 public class QuerySearcher {
 
 	public static String QUERYFILE_DIRECTORY = System.getProperty("user.dir") 
-			+ "\\cran\\cran.qry";
+			+ "/cran/cran.qry";
 	public static String INDEX_DIRECTORY = System.getProperty("user.dir") + 
-			"\\index";
+			"/index";
 	public static String OUTPUT_DIRECTORY = "output.txt";
 	
 	public void parseAndSearchQueries(String[] args) throws IOException, ParseException {
@@ -92,14 +92,14 @@ public class QuerySearcher {
             		}
             	}
             	bufferedContent = bufferedContent.trim();
-            	System.out.println(bufferedContent);
+            	//System.out.println(bufferedContent);
             	
             	// TODO: Text Processing
             	//bufferedContent = stripPunctuation(bufferedContent);	// decreas
             	bufferedContent = removeStopWords(bufferedContent, stopWords);
             	bufferedContent = addBasicTokenization(bufferedContent);
             	
-            	System.out.println(bufferedContent);
+            	//System.out.println(bufferedContent);
             	Query query = parser.parse(QueryParser.escape(bufferedContent));
 
             	// reset query at the end.

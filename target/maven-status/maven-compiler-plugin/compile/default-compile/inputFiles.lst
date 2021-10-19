@@ -1,0 +1,7 @@
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/StopWords.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/CreateIndex.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/ShinigamiAnalyzer.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/Application.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/QuerySearcher.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/CorpusParser.java
+/opt/ir_assignement1/IR_lucene/src/main/java/com/kaushik/lucene/assignment/ArgumentResolver.java
