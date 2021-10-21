@@ -62,12 +62,7 @@ public class CorpusParser {
                 Document doc = new Document();
                 
                 // ID
-                if(currentLine.startsWith(".I")){
-                    
-                    doc.add(new StringField("id", currentLine.substring(3),
-                    		Field.Store.YES));
-                    currentLine = bufferedReader.readLine();
-                }
+                currentLine = parseId(bufferedReader, currentLine, doc);
                 
                 // Title
                 if (currentLine.startsWith(".T")){
@@ -120,4 +115,14 @@ public class CorpusParser {
             }
         }
     }
+
+	private String parseId(BufferedReader bufferedReader, String currentLine, Document doc) throws IOException {
+		if(currentLine.startsWith(".I")){
+		    
+		    doc.add(new StringField("id", currentLine.substring(3),
+		    		Field.Store.YES));
+		    currentLine = bufferedReader.readLine();
+		}
+		return currentLine;
+	}
 }
