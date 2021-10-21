@@ -56,7 +56,7 @@ public class CorpusParser {
             
             // Start Indexing.
             String currentLine = bufferedReader.readLine();
-            String fullText = "";
+            String completeContentUnderField = "";
 
             while(currentLine != null){
                 Document doc = new Document();
@@ -68,47 +68,47 @@ public class CorpusParser {
                 if (currentLine.startsWith(".T")){
                     currentLine = bufferedReader.readLine();
                     while(!currentLine.startsWith(".A")){
-                        fullText += currentLine + " ";
+                    	completeContentUnderField += currentLine + " ";
                         currentLine = bufferedReader.readLine();
                     }
-                    doc.add(new TextField("title", fullText, Field.Store.YES));
-                    fullText = "";
+                    doc.add(new TextField("title", completeContentUnderField, Field.Store.YES));
+                    completeContentUnderField = "";
                 }
                 
                 // Author
                 if (currentLine.startsWith(".A")){
                     currentLine = bufferedReader.readLine();
                     while(!currentLine.startsWith(".B")){
-                        fullText += currentLine + " ";
+                    	completeContentUnderField += currentLine + " ";
                         currentLine = bufferedReader.readLine();
                     }
-                    doc.add(new TextField("author", fullText, Field.Store.YES));
-                    fullText = "";
+                    doc.add(new TextField("author", completeContentUnderField, Field.Store.YES));
+                    completeContentUnderField = "";
                 }
                 
                 // Bibliography
                 if (currentLine.startsWith(".B")){
                     currentLine = bufferedReader.readLine();
                     while(!currentLine.startsWith(".W")){
-                        fullText += currentLine + " ";
+                    	completeContentUnderField += currentLine + " ";
                         currentLine = bufferedReader.readLine();
                     }
 
-                    doc.add(new StringField("bibliography", fullText,
+                    doc.add(new StringField("bibliography", completeContentUnderField,
                     		Field.Store.YES));
-                    fullText = "";
+                    completeContentUnderField = "";
                 }
                 
                 // Content
                 if (currentLine.startsWith(".W")){
                     currentLine = bufferedReader.readLine();
                     while(currentLine != null && !currentLine.startsWith(".I")){
-                        fullText += currentLine + " ";
+                    	completeContentUnderField += currentLine + " ";
                         currentLine = bufferedReader.readLine();
                     }
                     //Not storing the words in an attempt to save storage space.
-                    doc.add(new TextField("words", fullText, Field.Store.NO));
-                    fullText = "";
+                    doc.add(new TextField("words", completeContentUnderField, Field.Store.NO));
+                    completeContentUnderField = "";
                 }
                 
                 writer.addDocument(doc);

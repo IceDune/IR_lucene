@@ -134,13 +134,13 @@ public class QuerySearcher {
 	private void performSearch(IndexSearcher searcher, PrintWriter writer,
 			String id, Query query) throws IOException {
 		TopDocs results = searcher.search(query, 1400);
-        ScoreDoc[] hits = results.scoreDocs;
+        ScoreDoc[] score = results.scoreDocs;
 
         // To write the results for each hit in the format expected by the trec_eval tool.
-        for (int i = 0; i < hits.length; i++) {
-            Document doc = searcher.doc(hits[i].doc);
+        for (int i = 0; i < score.length; i++) {
+            Document doc = searcher.doc(score[i].doc);
             writer.println(id + " 0 " + doc.get("id") + " " + i + " " + 
-            		hits[i].score + " BINARY");
+            		score[i].score + " BINARY");
         }
 	}
 }
