@@ -7,6 +7,11 @@ import org.apache.lucene.analysis.custom.CustomAnalyzer;
 
 public class ShinigamiAnalyzer {
 	
+	/*
+	 * custom filter from
+	 * https://www.baeldung.com/lucene-analyzers
+	 */
+	
 	public static Analyzer ShinigamiAnalyzer() {
 		Analyzer analyzer = null;
 		try {
