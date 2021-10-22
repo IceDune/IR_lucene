@@ -26,6 +26,7 @@ public class ShinigamiAnalyzer {
 				      //.addTokenFilter(EnglishMinimalStemFilterFactory.class)
 				      .addTokenFilter(PorterStemFilterFactory.class)
 				      .addTokenFilter(LowerCaseFilterFactory.class)
+				      .addTokenFilter("stop")
 				      .addTokenFilter(NGramFilterFactory.class, "minGramSize","5", "maxGramSize", "6")
 				      .addTokenFilter(TrimFilterFactory.class)
 				      .build();
