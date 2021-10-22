@@ -66,7 +66,7 @@ public class QuerySearcher {
             		new InputStreamReader(stream, StandardCharsets.UTF_8));
             
             MultiFieldQueryParser parser = new MultiFieldQueryParser(
-            		new String[]{"title", "author", "bibliography", "words"},
+            		new String[]{"title", "author", "bibliography", "content"},
             		analyzer);
             
             // Start parsing.
@@ -94,12 +94,6 @@ public class QuerySearcher {
             	bufferedContent = bufferedContent.trim();
             	//System.out.println(bufferedContent);
             	
-            	// TODO: Text Processing
-            	//bufferedContent = stripPunctuation(bufferedContent);	// decreas
-            	bufferedContent = removeStopWords(bufferedContent, stopWords);
-            	bufferedContent = addBasicTokenization(bufferedContent);
-            	
-            	//System.out.println(bufferedContent);
             	Query query = parser.parse(QueryParser.escape(bufferedContent));
 
             	// reset query at the end.
@@ -114,22 +108,22 @@ public class QuerySearcher {
 		}
 	}
 	
-	private String stripPunctuation(String content) {
-		content = content.replaceAll("\\p{Punct}", "");
-		return content;
-	}
-	
-	private String removeStopWords(String content, String[] stopWords) {
-		for (String word : stopWords) {
-			content = content.replaceAll(word, " ");
-		}
-		return content;
-	}
-	
-	private String addBasicTokenization(String content) {
-		content = content.replaceAll("-", " ");
-		return content;
-	}
+//	private String stripPunctuation(String content) {
+//		content = content.replaceAll("\\p{Punct}", "");
+//		return content;
+//	}
+//	
+//	private String removeStopWords(String content, String[] stopWords) {
+//		for (String word : stopWords) {
+//			content = content.replaceAll(word, " ");
+//		}
+//		return content;
+//	}
+//	
+//	private String addBasicTokenization(String content) {
+//		content = content.replaceAll("-", " ");
+//		return content;
+//	}
 	
 	private void performSearch(IndexSearcher searcher, PrintWriter writer,
 			String id, Query query) throws IOException {

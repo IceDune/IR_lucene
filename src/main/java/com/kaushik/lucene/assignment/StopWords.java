@@ -1,7 +1,5 @@
 package com.kaushik.lucene.assignment;
 
-import java.util.ArrayList;
-
 public class StopWords {
 	
 	static String[] stopWords = {"a", "about", "above", "after", "again", 

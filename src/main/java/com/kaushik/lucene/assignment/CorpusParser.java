@@ -107,7 +107,7 @@ public class CorpusParser {
                         currentLine = bufferedReader.readLine();
                     }
                     //Not storing the words in an attempt to save storage space.
-                    doc.add(new TextField("words", completeContentUnderField, Field.Store.NO));
+                    doc.add(new TextField("content", completeContentUnderField, Field.Store.NO));
                     completeContentUnderField = "";
                 }
                 
