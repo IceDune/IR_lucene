@@ -5,10 +5,10 @@ ____
 1. log into the VM with azureuser
 2. run the following commands in order.
 
-	sudo su -
-	cd ..
-	cd opt/
-	cd ir_assignement1/IR_lucene
+	sudo su -\
+	cd ..\
+	cd opt/\
+	cd ir_assignement1/IR_lucene\
 	bash run.sh
 
 >The shell file will do a maven clean install, then compile on various combinations
