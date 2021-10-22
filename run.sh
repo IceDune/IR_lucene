@@ -1,6 +1,7 @@
 #!/bin/sh
 
 CYAN='\033[0;36m'
+GREEN='\033[0;32m'
 NC='\033[0m' 
 
 echo -e "${CYAN}Cleaning files and directories, clearing compiled files, and download dependencies ${NC} \n"
@@ -21,7 +22,7 @@ trec_eval -m recall cran/QRelsCorrectedforTRECeval output.txt
 echo -e "${CYAN} Running application with simple analyzer and LMDirichletSimilarity  ${NC} \n"
 mvn exec:java -Dexec.mainClass=com.kaushik.lucene.assignment.Application -Dexec.args="-sa --lmd"
 
-echo -e "${CYAN} Running trec_eval score for mean average and avg. precision (simple analuzer and LMDirichlet similarity) ${NC} \n"
+echo -e "${CYAN} Running trec_eval score for mean average and avg. precision (simple analyzer and LMDirichlet similarity) ${NC} \n"
 trec_eval -m map -m gm_map cran/QRelsCorrectedforTRECeval output.txt 
 
 echo -e "${CYAN} Running trec_eval recall score ${NC} \n"
@@ -114,9 +115,10 @@ mvn exec:java -Dexec.mainClass=com.kaushik.lucene.assignment.Application -Dexec.
 echo -e "${CYAN} Running trec_eval score for mean average precision and average precision(english analyzer and bm25 similarity) ${NC} \n"
 trec_eval -m map -m gm_map cran/QRelsCorrectedforTRECeval output.txt
 
-echo -e "${Cyan} running trec_eval recall score ${NC} \n"
+echo -e "${CYAN} running trec_eval recall score ${NC} \n"
 trec_eval -m recall cran/QRelsCorrectedforTRECeval output.txt 
 
+echo -e "${GREEN} CUSTOM ANALYZER ${NC} \n"
 
 echo -e "${CYAN} Running application with Custom analyzer and bm25 similarity ${NC} \n"
 mvn exec:java -Dexec.mainClass=com.kaushik.lucene.assignment.Application -Dexec.args="-shina --bm25"
@@ -133,5 +135,5 @@ mvn exec:java -Dexec.mainClass=com.kaushik.lucene.assignment.Application -Dexec.
 echo -e "${CYAN} Running trec_eval score for mean average precision and average precision(custom analyzer and classic similarity) ${NC} \n"
 trec_eval -m map -m gm_map cran/QRelsCorrectedforTRECeval output.txt
 
-echo -e "${Cyan} running trec_eval recall score ${NC} \n"
+echo -e "${CYAN} running trec_eval recall score ${NC} \n"
 trec_eval -m recall cran/QRelsCorrectedforTRECeval output.txt 

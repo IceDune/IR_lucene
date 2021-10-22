@@ -32,7 +32,7 @@ public class ArgumentResolver {
 			analyzer = new ShinigamiAnalyzer().ShinigamiAnalyzer();
     	}
     	else {	// default analyzer.
-    		analyzer = new EnglishAnalyzer();
+    		analyzer = new ShinigamiAnalyzer().ShinigamiAnalyzer();//new EnglishAnalyzer();
     	}
     	
 		

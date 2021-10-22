@@ -140,7 +140,7 @@ public class QuerySearcher {
         for (int i = 0; i < score.length; i++) {
             Document doc = searcher.doc(score[i].doc);
             writer.println(id + " 0 " + doc.get("id") + " " + i + " " + 
-            		score[i].score + " BINARY");
+            		score[i].score + " KAUSHIK");
         }
 	}
 }
